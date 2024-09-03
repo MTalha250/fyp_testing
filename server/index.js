@@ -29,9 +29,7 @@ const connectMongodb = async () => {
 
 app.use(
   cors({
-    origin: "*", // Temporarily allow all origins
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    credentials: true,
+    origin: "*",
   })
 );
 
