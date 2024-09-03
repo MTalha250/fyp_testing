@@ -27,23 +27,17 @@ const connectMongodb = async () => {
   }
 };
 
-// CORS middleware setup
 app.use(
   cors({
+    credentials: true,
     origin: ["http://localhost:5173", "https://servicelance.netlify.app"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    credentials: true, // This allows cookies to be sent
   })
 );
 
-// Handle preflight requests
-app.options("*", cors());
-
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/gigs", gigRoute);
@@ -52,19 +46,16 @@ app.use("/api/conversation", converstionRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong!🤔";
   res.status(errorStatus).send(errorMessage);
 });
 
-// Root route
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-// Start server and connect to MongoDB
 app.listen(8000, () => {
   connectMongodb();
   console.log(`Server running on port 8000`);
