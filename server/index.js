@@ -29,7 +29,7 @@ const connectMongodb = async () => {
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://fyp-testing.vercel.app"],
+    origin: ["http://localhost:5173", "https://servicelance.vercel.app"],
     credentials: true,
   })
 );
