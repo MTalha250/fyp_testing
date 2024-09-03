@@ -70,9 +70,9 @@ const OrdersSummary = () => {
       <Content
         style={{
           margin: "0 16px",
-          backgroundColor:"#ffffff",
-          borderRadius:"30px",
-          padding:"20px"
+          backgroundColor: "#ffffff",
+          borderRadius: "30px",
+          padding: "20px",
         }}
       >
         <div className="flex items-center my-10 bg- rounded-3xl justify-between w-full gap-2">
@@ -134,8 +134,10 @@ const OrdersSummary = () => {
                       ))}
                   </tbody>
                 </table>
-                <NavLink to={'/orders'} className="flex  justify-end">
-                <Button  className=" font-bold text-lg ">{"View Orders >"} </Button>
+                <NavLink to={"/orders"} className="flex  justify-end">
+                  <Button className=" font-bold text-lg ">
+                    {"View Orders >"}{" "}
+                  </Button>
                 </NavLink>
               </>
             )}

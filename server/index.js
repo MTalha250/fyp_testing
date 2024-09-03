@@ -29,7 +29,7 @@ const connectMongodb = async () => {
 
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -49,6 +49,10 @@ app.use((err, req, res, next) => {
   const errorMessage = err.message || "Something went wrong!🤔";
 
   return res.status(errorStatus).send(errorMessage);
+});
+
+app.get("/", (req, res) => {
+  res.send("Server is running");
 });
 
 app.listen(8000, () => {
