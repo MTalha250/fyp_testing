@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  font-family: "Noto Sans", sans-serif;
+}
+.contain {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.overflow-hiddens {
+  overflow: hidden!;
+}
+
+.active {
+  color: #1dbf73 !important;
+}
+
+label .action input:checked ~ i {
+  background-color: #0dcccc;
+}
+label .action input:checked ~ i::before {
+  left: calc(100% - 24px);
+}
+.logoDash{
+    margin-bottom: 40px!important;
+}
+.logout-btn{
+  background-color: rgb(233, 71, 71)!important;
+color: white !important;
+}
+.ant-menu-item-selected {
+    background-color: white !important;
+    color: blue !important;
+}
+
+.ant-menu-item-selected .anticon {
+    color: blue !important;
+}
