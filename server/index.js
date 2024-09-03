@@ -29,7 +29,7 @@ const connectMongodb = async () => {
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://fyp-testing.vercel.app"],
     credentials: true,
   })
 );
@@ -57,5 +57,5 @@ app.get("/", (req, res) => {
 
 app.listen(8000, () => {
   connectMongodb();
-  console.log(`Server running on port http://localhost:${8000}`);
+  console.log(`Server running on port ${8000}`);
 });

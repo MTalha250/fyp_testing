@@ -7,7 +7,7 @@ import useAuthStore from "../../stores";
 import loader from "../../assets/icons/loader.svg";
 import requests from "../../libs/request";
 import { Axios } from "../../config";
-import { Layout, theme, Dropdown , Menu} from "antd";
+import { Layout, theme, Dropdown, Menu } from "antd";
 import HeaderDashboard from "../../components/Header/Header";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
@@ -17,8 +17,8 @@ const { Header, Content } = Layout;
 
 const MyGigs = () => {
   const { authUser } = useAuthStore();
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const gigData = useSelector((state) => state.dataSave.gigData);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -38,41 +38,40 @@ const MyGigs = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myGigs"]);
-      toast.success("Gig deleted successfully")
+      toast.success("Gig deleted successfully");
     },
   });
 
   const getGigData = async (id) => {
-  
     try {
-      const response = await axios.get(`http://localhost:8000${requests.gigs}/single/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
+      const response = await axios.get(
+        `https://fyp-testing-server.vercel.app${requests.gigs}/single/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
       dispatch(setGigData(response.data)); // Dispatch action to update Redux store
       return response.data;
     } catch (error) {
-      console.error('Failed to fetch gig data:', error);
+      console.error("Failed to fetch gig data:", error);
       throw error;
     }
   };
-  
 
   const handleDelete = (id) => {
     mutation.mutate(id);
-    
   };
   const handleEdit = (id) => {
     getGigData(id);
-    navigate('/edit-service')
+    navigate("/edit-service");
   };
-  
+
   useEffect(() => {
     refetch();
   }, []);
-
 
   const tableActions = data?.map((item) => ({
     image: (
@@ -115,33 +114,27 @@ const MyGigs = () => {
             </Menu.Item>
           </Menu>
         }
-        trigger={['click']}
+        trigger={["click"]}
       >
         <div className="w-full flex items-center justify-start cursor-pointer">
-          <BsThreeDots size={20} /> {/* This icon will show up as the trigger for the dropdown */}
+          <BsThreeDots size={20} />{" "}
+          {/* This icon will show up as the trigger for the dropdown */}
         </div>
       </Dropdown>
     ),
   }));
-  
+
   // Define handleEdit function for editing action
-  
-  
- 
+
   return (
-    
     <Layout>
-         <ToastContainer
-     position= "top-right"
-     toastId= {1}
-     autoClose= {1000}
-    />
-   <HeaderDashboard/>
-    <Content
-      style={{
-        margin: "0 16px",
-      }}
-    >
+      <ToastContainer position="top-right" toastId={1} autoClose={1000} />
+      <HeaderDashboard />
+      <Content
+        style={{
+          margin: "0 16px",
+        }}
+      >
         <div className="w-full flex flex-col items-start gap-5 justify-start">
           <div className="flex items-center justify-between w-full gap-2">
             <h2 className="text-2xl font-bold my-10">Services</h2>
@@ -210,8 +203,8 @@ const MyGigs = () => {
             </>
           )}
         </div>
-        </Content>
-        </Layout>
+      </Content>
+    </Layout>
   );
 };
 
