@@ -29,11 +29,16 @@ const connectMongodb = async () => {
 
 app.use(
   cors({
-    credentials: true,
-    origin: ["http://localhost:5173", "https://servicelance.netlify.app"],
+    origin: "*", // Temporarily allow all origins
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    credentials: true,
   })
 );
+
+app.use((req, res, next) => {
+  console.log("Request Headers:", req.headers);
+  next();
+});
 
 app.use(express.json());
 app.use(cookieParser());
