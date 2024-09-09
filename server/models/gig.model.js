@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const GigSchema = new Schema(
   {
     userId: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "Consultant",
       required: true,
     },
     title: {
@@ -39,10 +40,6 @@ const GigSchema = new Schema(
       type: [String],
       required: false,
     },
-    userId: {
-      type: String,
-      required: true,
-    },
     shortTitle: {
       type: String,
       required: true,
@@ -52,7 +49,7 @@ const GigSchema = new Schema(
       required: true,
     },
     deliveryTime: {
-      type: Number,
+      type: Number, // Time in days
       required: true,
     },
     revisionNumber: {
@@ -67,6 +64,7 @@ const GigSchema = new Schema(
       type: Number,
       default: 0,
     },
+    clients: [{ type: Schema.Types.ObjectId, ref: "Client" }],
   },
   {
     timestamps: true,
